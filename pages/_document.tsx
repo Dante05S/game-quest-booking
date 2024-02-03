@@ -1,11 +1,21 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import { Html, Head, Main, NextScript } from 'next/document';
 
-export default function Document() {
+export default function Document(): React.JSX.Element {
   return (
-    <Html lang="en">
-      <Head />
-      <body>
+    <Html lang="en" dir="ltr">
+      <Head>
+        <meta name="robots" content="index,follow" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="gamequestbooking" />
+        <meta
+          property="og:url"
+          content="https://game-quest-booking.vercel.app/"
+        />
+      </Head>
+      <body className="bg-background text-white">
         <Main />
+        <div id="aside" />
+        <div id="modal" />
         <NextScript />
       </body>
     </Html>
