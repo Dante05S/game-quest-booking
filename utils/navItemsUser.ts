@@ -14,7 +14,7 @@ const navItemsUser: NavItems[] = [
     key: 2,
     icon: FaCalendarCheck,
     title: 'Mis reservas',
-    href: ''
+    href: '/bookings'
   },
   {
     key: 3,

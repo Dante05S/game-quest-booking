@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { createPortal } from 'react-dom';
 
@@ -16,11 +16,22 @@ export default function Modal({
   toggle,
   breakPointWidth = 'sm:w-96'
 }: Props): React.JSX.Element | null {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
+
   return isOpen
     ? createPortal(
         <div className="bg-pane fixed top-0 right-0 h-full w-full z-[20] sm:flex sm:justify-center sm:items-center">
           <div
-            id="cosa"
+            id="pane"
             className="h-full w-full absolute"
             onClick={() => {
               toggle();
@@ -33,8 +44,8 @@ export default function Modal({
               breakPointWidth
             )}
           >
-            <div className="px-2 py-4 flex flex-col text-center items-center">
-              {children}
+            <div className="py-4 flex flex-col text-center items-center">
+              <div className="scroll max-h-[570px] px-2">{children}</div>
             </div>
           </div>
         </div>,

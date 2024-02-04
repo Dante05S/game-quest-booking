@@ -4,7 +4,7 @@ import Button from '../Buttons/Button';
 
 export default function Auth(): React.JSX.Element {
   return (
-    <div className="flex gap-6">
+    <div className="flex gap-2 xs:gap-6">
       <Link href="/login">
         <div className="w-32 sm:w-40">
           <Button variant="outlined">Iniciar sesión</Button>

@@ -1,5 +1,5 @@
 import { type Event } from '@/models/Event';
 
-export interface HomeProps {
+export interface EventState {
   events: Event[];
 }

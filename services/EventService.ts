@@ -1,3 +1,4 @@
+import { type Event } from '@/models/Event';
 import Service from './Service';
 import { type IService } from '@/interfaces/service.interface';
 

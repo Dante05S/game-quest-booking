@@ -26,6 +26,17 @@ const ContentAside = forwardRef<HTMLDivElement, Props>(function ContentAside(
     };
   }, []);
 
+  useEffect(() => {
+    if (mounted) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [mounted]);
+
   return mounted
     ? createPortal(
         <>

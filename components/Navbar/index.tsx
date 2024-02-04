@@ -25,14 +25,14 @@ export default function NavBar(): React.JSX.Element {
     <header className="z-10 sticky top-0">
       <nav
         className={clsx(
-          'px-6 transition-all duration-300 flex justify-between items-center',
+          'px-4 xs:px-8 transition-all duration-300 flex gap-6 justify-between items-center',
           {
             'h-[var(--height-nav)]': !scrolled,
             'h-[var(--height-scrolled-nav)] bg-black/70': scrolled
           }
         )}
       >
-        <Logo size={scrolled ? 70 : 120} />
+        <Logo size={scrolled ? 50 : 80} />
         {token === null ? <Auth /> : <User />}
       </nav>
     </header>

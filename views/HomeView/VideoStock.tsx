@@ -1,15 +1,19 @@
 import Button from '@/components/Buttons/Button';
+import { selectToken } from '@/redux/slices/userSlice';
 import Link from 'next/link';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Typewriter from 'typewriter-effect';
 
 function ButtonActions(): React.JSX.Element {
+  const token = useSelector(selectToken);
+
   return (
     <div className="flex gap-6 mt-7">
-      <Link href="/register">
+      <Link href={token === null ? '/register' : '/bookings'}>
         <div className="w-40">
           <Button variant="rounded" padding="py-2">
-            Registrate
+            {token === null ? 'Registrate' : 'Reservas'}
           </Button>
         </div>
       </Link>
