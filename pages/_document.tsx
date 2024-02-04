@@ -4,6 +4,7 @@ export default function Document(): React.JSX.Element {
   return (
     <Html lang="en" dir="ltr">
       <Head>
+        <link rel="icon" href="logo.png" type="image/x-icon" />
         <meta name="robots" content="index,follow" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="gamequestbooking" />

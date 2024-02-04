@@ -35,6 +35,7 @@ const config: Config = {
       screens: {
         'xxs': '369px',
         'xs': '500px',
+        '2md': '900px',
         '3xl': '1600px'
       },
       maxWidth: {
