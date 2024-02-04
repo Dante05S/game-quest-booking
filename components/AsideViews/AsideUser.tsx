@@ -1,14 +1,18 @@
 import Avatar from '@/components/Display/Avatar';
 import React from 'react';
 import navItemsUser from '@/utils/navItemsUser';
+import { useSelector } from 'react-redux';
+import { selectUser } from '@/redux/slices/userSlice';
 
 export default function AsideUser(): React.JSX.Element {
+  const user = useSelector(selectUser);
+
   return (
     <div className="flex flex-col items-center w-full h-full">
       <Avatar size={65}>A</Avatar>
       <div className="mt-2.5 w-full flex flex-col items-center gap-0.5">
-        <span>¡Bienvenido! Alejandro</span>
-        <span className="text-primary">+57 321 8403738</span>
+        <span>¡Bienvenido! {user?.first_name}</span>
+        <span className="text-primary">{user?.email}</span>
       </div>
       <ul className="flex flex-col gap-1 w-full px-2 mt-2.5">
         {navItemsUser.map((item) => {

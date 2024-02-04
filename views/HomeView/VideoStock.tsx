@@ -6,11 +6,13 @@ import Typewriter from 'typewriter-effect';
 function ButtonActions(): React.JSX.Element {
   return (
     <div className="flex gap-6 mt-7">
-      <div className="w-40">
-        <Button variant="rounded" padding="py-2">
-          Registrate
-        </Button>
-      </div>
+      <Link href="/register">
+        <div className="w-40">
+          <Button variant="rounded" padding="py-2">
+            Registrate
+          </Button>
+        </div>
+      </Link>
       <Link href="#events">
         <div className="w-40">
           <Button variant="outlined" padding="py-2">
@@ -44,7 +46,7 @@ function Title(): React.JSX.Element {
 
 export default function VideoStock(): React.JSX.Element {
   return (
-    <div className="flex h-[calc(100vh_-_var(--height-nav))]">
+    <div className="flex h-[calc(100vh_-_var(--height-scrolled-nav))]">
       <div className="absolute w-full h-[100vh] top-0 flex justify-center items-center z-[1]">
         <div className="flex flex-col p-3 items-center">
           <div className="flex flex-col items-center">

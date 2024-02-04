@@ -3,9 +3,13 @@ import React, { useEffect, useState } from 'react';
 import Logo from './Logo';
 import User from './User';
 import clsx from 'clsx';
+import { useSelector } from 'react-redux';
+import { selectToken } from '@/redux/slices/userSlice';
+import Auth from './Auth';
 
 export default function NavBar(): React.JSX.Element {
   const [scrolled, setScrolled] = useState<boolean>(false);
+  const token = useSelector(selectToken);
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -29,7 +33,7 @@ export default function NavBar(): React.JSX.Element {
         )}
       >
         <Logo size={scrolled ? 70 : 120} />
-        <User />
+        {token === null ? <Auth /> : <User />}
       </nav>
     </header>
   );
