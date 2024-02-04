@@ -1,5 +1,5 @@
 import { type IconType } from 'react-icons';
-import { FaUserAlt, FaCalendarCheck } from 'react-icons/fa';
+import { FaCalendarCheck } from 'react-icons/fa';
 import { ImExit } from 'react-icons/im';
 
 export interface NavItems {
@@ -11,12 +11,6 @@ export interface NavItems {
 
 const navItemsUser: NavItems[] = [
   {
-    key: 1,
-    icon: FaUserAlt,
-    title: 'Ver perfil',
-    href: '/account'
-  },
-  {
     key: 2,
     icon: FaCalendarCheck,
     title: 'Mis reservas',
@@ -26,7 +20,7 @@ const navItemsUser: NavItems[] = [
     key: 3,
     icon: ImExit,
     title: 'Cerrar sesión',
-    href: ''
+    href: '/logout'
   }
 ];
 
