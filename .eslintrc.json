@@ -46,6 +46,7 @@
     "react-hooks/exhaustive-deps": "off",
     "react/jsx-filename-extension": "off",
     "linebreak-style": [0, "error", "windows"],
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "off"
   }
 }
