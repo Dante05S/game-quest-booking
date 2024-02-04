@@ -6,4 +6,8 @@ export interface IService<T> {
   create: (data: Record<string, unknown>) => Promise<Response<T>>;
   update: (id: string, data: Record<string, unknown>) => Promise<Response<T>>;
   remove: (id: string) => Promise<Response<T>>;
+  updatePatch: (
+    id: string,
+    data: Record<string, unknown>
+  ) => Promise<Response<T>>;
 }

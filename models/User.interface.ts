@@ -1,10 +1,11 @@
 export interface User {
+  id: string;
   first_name: string;
   last_name: string;
   email: string;
 }
 
-export interface RegisterUser extends User {
+export interface RegisterUser extends Omit<User, 'id'> {
   password: string;
 }
 

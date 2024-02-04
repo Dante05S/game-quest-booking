@@ -149,6 +149,38 @@ export default class HttpRequest {
     }
   }
 
+  async patch<T>(
+    id: string,
+    data: ResponseObjectData,
+    isPublic = false,
+    token: string | null = null
+  ): Promise<Response<T>> {
+    try {
+      const response: globalThis.Response = await fetch(this.buildUrl(id), {
+        method: 'PATCH',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+          'api-key': isPublic
+            ? process.env.NEXT_PUBLIC_FRONT_API_KEY ?? ''
+            : '',
+          Authorization: token !== null ? `Bearer ${token}` : ''
+        }
+      });
+
+      return response.json() as unknown as Response<T>;
+    } catch (err) {
+      console.error(err);
+      return {
+        data: null,
+        message: err as string,
+        errors: Array(err as string),
+        success: false,
+        code: 500
+      };
+    }
+  }
+
   async putNew<T>(
     data: ResponseObjectData,
     isPublic = false,

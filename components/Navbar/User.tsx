@@ -16,10 +16,9 @@ import navItemsUser from '@/utils/navItemsUser';
 import useModal from '@/hooks/useModal';
 import Loading from '../Loaders/Loading';
 import IconButton from '../Buttons/IconButton';
-import { useDispatch, useSelector } from 'react-redux';
-import { clearTokenThunk, selectUser } from '@/redux/slices/userSlice';
-import { useRouter } from 'next/router';
-import { type AppDispatch } from '@/redux/store';
+import { useSelector } from 'react-redux';
+import { selectUser } from '@/redux/slices/userSlice';
+import useRedirectNav from '@/hooks/useRedirectNav';
 
 const Aside = dynamic(
   async () => await import('@/components/Navigation/Aside'),
@@ -36,17 +35,7 @@ const AsideUser = dynamic(
 );
 
 function ContentTooltip(): React.JSX.Element {
-  const router = useRouter();
-  const dispatch = useDispatch<AppDispatch>();
-
-  const redirectTo = async (href: string): Promise<void> => {
-    if (href === '/logout') {
-      await dispatch(clearTokenThunk());
-      router.reload();
-      return;
-    }
-    void router.push(href);
-  };
+  const { redirectTo } = useRedirectNav();
 
   return (
     <Card spacing="p-3">
@@ -93,7 +82,7 @@ export default function User(): React.JSX.Element {
             toggleAside();
           }}
         >
-          <Avatar size={40}>A</Avatar>
+          <Avatar size={40}>{user?.first_name.charAt(0)}</Avatar>
         </button>
       </div>
       <div className="hidden xs:block animate-scale-popup">
@@ -114,7 +103,7 @@ export default function User(): React.JSX.Element {
               }}
             >
               <div className="flex items-center">
-                <Avatar size={40}>A</Avatar>
+                <Avatar size={40}>{user?.first_name.charAt(0)}</Avatar>
                 <div className="flex flex-col ml-2.5">
                   <p className="text-base">¡Bienvenido!, {user?.first_name}</p>
                   <p className="text-sm text-primary text-left">
