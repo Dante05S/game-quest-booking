@@ -4,4 +4,5 @@ export interface Event {
   description: string;
   start_date: Date;
   available_quotas: number;
+  image: string;
 }
