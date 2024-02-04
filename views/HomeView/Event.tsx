@@ -10,6 +10,7 @@ interface Props {
 }
 
 export function EventComponent({ event }: Props): React.JSX.Element {
+  console.log(event);
   return (
     <div
       className="w-full md:max-w-[50%] md:basis-1/2 lg:max-w-full lg:basis-full

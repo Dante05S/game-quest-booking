@@ -16,6 +16,10 @@ import navItemsUser from '@/utils/navItemsUser';
 import useModal from '@/hooks/useModal';
 import Loading from '../Loaders/Loading';
 import IconButton from '../Buttons/IconButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearTokenThunk, selectUser } from '@/redux/slices/userSlice';
+import { useRouter } from 'next/router';
+import { type AppDispatch } from '@/redux/store';
 
 const Aside = dynamic(
   async () => await import('@/components/Navigation/Aside'),
@@ -32,6 +36,18 @@ const AsideUser = dynamic(
 );
 
 function ContentTooltip(): React.JSX.Element {
+  const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const redirectTo = async (href: string): Promise<void> => {
+    if (href === '/logout') {
+      await dispatch(clearTokenThunk());
+      router.reload();
+      return;
+    }
+    void router.push(href);
+  };
+
   return (
     <Card spacing="p-3">
       <div className="w-44">
@@ -40,7 +56,12 @@ function ContentTooltip(): React.JSX.Element {
             const Icon = item.icon;
             return (
               <li key={item.key} className="group cursor-pointer leading-none">
-                <button className="w-full h-full">
+                <button
+                  className="w-full h-full"
+                  onClick={() => {
+                    void redirectTo(item.href);
+                  }}
+                >
                   <div className="flex items-center">
                     <div className="mr-2.5">
                       <Icon className="text-primary text-xl" />
@@ -62,10 +83,11 @@ function ContentTooltip(): React.JSX.Element {
 export default function User(): React.JSX.Element {
   const [open, setOpen] = useState<boolean>(false);
   const [openAside, toggleAside] = useModal();
+  const user = useSelector(selectUser);
 
   return (
     <>
-      <div className="xs:hidden">
+      <div className="xs:hidden animate-scale-popup">
         <button
           onClick={() => {
             toggleAside();
@@ -74,7 +96,7 @@ export default function User(): React.JSX.Element {
           <Avatar size={40}>A</Avatar>
         </button>
       </div>
-      <div className="hidden xs:block">
+      <div className="hidden xs:block animate-scale-popup">
         <ClickAwayListener
           onClickAway={() => {
             setOpen(false);
@@ -94,9 +116,9 @@ export default function User(): React.JSX.Element {
               <div className="flex items-center">
                 <Avatar size={40}>A</Avatar>
                 <div className="flex flex-col ml-2.5">
-                  <p className="text-base">¡Bienvenido!, Alejandro</p>
+                  <p className="text-base">¡Bienvenido!, {user?.first_name}</p>
                   <p className="text-sm text-primary text-left">
-                    Dante05@hotmail.com
+                    {user?.email}
                   </p>
                 </div>
               </div>

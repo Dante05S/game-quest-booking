@@ -8,7 +8,7 @@ export default function Events(): React.JSX.Element {
 
   return (
     <div className="flex flex-col py-20">
-      <div className="bg-primary w-64 p-2 pl-5">
+      <div className="bg-primary w-[300px] p-2 pl-5">
         <h2 className="text-4xl" id="events">
           Eventos
         </h2>
