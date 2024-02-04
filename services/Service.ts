@@ -40,6 +40,21 @@ export default class Service<T> extends HttpRequest implements IService<T> {
     return response;
   }
 
+  async updatePatch(
+    id: string,
+    data: ResponseObjectData,
+    isPublic = false,
+    token: string | null = null
+  ): Promise<Response<T>> {
+    const response: Response<T> = await this.patch<T>(
+      id,
+      data,
+      isPublic,
+      token
+    );
+    return response;
+  }
+
   async remove(id: string, isPublic = false, token = ''): Promise<Response<T>> {
     const response: Response<T> = await this.delete<T>(id, isPublic, token);
     return response;
