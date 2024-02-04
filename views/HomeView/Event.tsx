@@ -20,7 +20,7 @@ export function EventComponent({ event }: Props): React.JSX.Element {
           <div className="w-full relative block lg:max-w-[50%] h-60 lg:basis-1/2">
             <Image
               alt="Imagen evento"
-              src="https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2023/12/12/17023994669334.jpg"
+              src={event.image}
               sizes="(min-width: 808px) 50vw, 100vw"
               fill
               style={{

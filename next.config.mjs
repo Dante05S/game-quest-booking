@@ -5,7 +5,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'e00-elmundo.uecdn.es'
+        hostname: 'res.cloudinary.com',
+        pathname: '/**/image/upload/**/event/**'
       }
     ]
   }
