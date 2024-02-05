@@ -10,6 +10,8 @@ import { FaCalendar } from 'react-icons/fa';
 import Status from './Status';
 import ButtonCancel from './ButtonCancel';
 import { isFinishEvent } from '@/utils/isFinishEvent';
+import RatingProvider from '@/context/RatingContext/RatingProvider';
+import ModalComment from '@/components/ModalComment';
 
 interface Props {
   booking: Booking;
@@ -19,6 +21,7 @@ export default function BookingComponent({
   booking
 }: Props): React.JSX.Element {
   const [isOpen, toggle] = useModal();
+  const [isOpenComment, toggleComment] = useModal();
 
   return (
     <>
@@ -70,6 +73,16 @@ export default function BookingComponent({
                 >
                   Ver
                 </Button>
+                {isFinishEvent(booking.event.start_date) && (
+                  <Button
+                    variant="rounded"
+                    onClick={() => {
+                      toggleComment();
+                    }}
+                  >
+                    Comentarios
+                  </Button>
+                )}
                 {!isFinishEvent(booking.event.start_date) &&
                   booking.status !== 'CANCEL' && (
                     <ButtonCancel bookingId={booking.id} />
@@ -87,6 +100,13 @@ export default function BookingComponent({
         status={booking.status}
         bookingId={booking.id}
       />
+      <RatingProvider eventId={booking.event.id}>
+        <ModalComment
+          eventName={booking.event.name}
+          isOpen={isOpenComment}
+          toggle={toggleComment}
+        />
+      </RatingProvider>
     </>
   );
 }

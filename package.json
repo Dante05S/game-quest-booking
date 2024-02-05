@@ -1,6 +1,6 @@
 {
   "name": "game-quest-booking",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -11,6 +11,7 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "@reduxjs/toolkit": "^2.1.0",
+    "@smastrom/react-rating": "^1.5.0",
     "clsx": "^2.1.0",
     "cookie": "^0.6.0",
     "dayjs": "^1.11.10",

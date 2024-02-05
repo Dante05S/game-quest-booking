@@ -1,4 +1,5 @@
 import '@/styles/globals.css';
+import '@smastrom/react-rating/style.css';
 import { Kanit } from 'next/font/google';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';

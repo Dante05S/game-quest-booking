@@ -7,6 +7,9 @@ import { getDate } from '@/utils/formatDate';
 import useModal from '@/hooks/useModal';
 import ModalEvent from '@/components/ModalEvent';
 import AlertControl from '@/components/Display/Modal/AlertControl';
+import { isFinishEvent } from '@/utils/isFinishEvent';
+import ModalComment from '@/components/ModalComment';
+import RatingProvider from '@/context/RatingContext/RatingProvider';
 
 interface Props {
   event: Event;
@@ -14,6 +17,8 @@ interface Props {
 
 export function EventComponent({ event }: Props): React.JSX.Element {
   const [isOpen, toggle] = useModal();
+  const [isOpenComment, toggleComment] = useModal();
+
   return (
     <>
       <div
@@ -64,6 +69,16 @@ export function EventComponent({ event }: Props): React.JSX.Element {
                 >
                   Reservar
                 </Button>
+                {isFinishEvent(event.start_date) && (
+                  <Button
+                    variant="rounded"
+                    onClick={() => {
+                      toggleComment();
+                    }}
+                  >
+                    Comentarios
+                  </Button>
+                )}
               </div>
             </div>
           </div>
@@ -71,6 +86,13 @@ export function EventComponent({ event }: Props): React.JSX.Element {
       </div>
       <AlertControl>
         <ModalEvent isOpen={isOpen} toggle={toggle} event={event} />
+        <RatingProvider eventId={event.id}>
+          <ModalComment
+            eventName={event.name}
+            isOpen={isOpenComment}
+            toggle={toggleComment}
+          />
+        </RatingProvider>
       </AlertControl>
     </>
   );

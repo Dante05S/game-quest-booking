@@ -3,10 +3,12 @@ import AlertYesNo from '@/components/Display/Modal/AlertYesNo';
 import { responseIsOk } from '@/helpers/request';
 import useModal from '@/hooks/useModal';
 import useAlertControl from '@/hooks/userAlertControl';
+import { updateBooking } from '@/redux/slices/bookingSlice';
 import { selectToken } from '@/redux/slices/userSlice';
+import { type AppDispatch } from '@/redux/store';
 import BookingService from '@/services/BookingService';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface Props {
   bookingId: string;
@@ -14,6 +16,7 @@ interface Props {
 
 export default function ButtonCancel({ bookingId }: Props): React.JSX.Element {
   const token = useSelector(selectToken);
+  const dispatch = useDispatch<AppDispatch>();
   const { openAlert } = useAlertControl();
   const [loading, setLoading] = useState<boolean>(false);
   const [isOpen, toggle] = useModal();
@@ -29,6 +32,7 @@ export default function ButtonCancel({ bookingId }: Props): React.JSX.Element {
       setLoading(false);
       return;
     }
+    dispatch(updateBooking(response.data!));
     openAlert('success', ['La reserva se cancelo existosamente']);
     setLoading(false);
   };
