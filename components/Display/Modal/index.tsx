@@ -39,13 +39,13 @@ export default function Modal({
           />
           <div
             className={clsx(
-              'rounded-lg h-fit w-full flex flex-col bg-secondary shadow-sm animate-popup fixed bottom-0',
+              'rounded-lg max-h-[70%] scroll w-full flex flex-col bg-secondary shadow-sm animate-popup fixed bottom-0',
               'sm:relative',
               breakPointWidth
             )}
           >
             <div className="py-4 flex flex-col text-center items-center">
-              <div className="scroll max-h-[570px] px-2">{children}</div>
+              <div className="sm:max-h-[570px]">{children}</div>
             </div>
           </div>
         </div>,

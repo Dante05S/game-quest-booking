@@ -57,7 +57,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       <div className="flex items-center justify-center">
         {loading && (
           <div className="flex justify-center mr-1">
-            <CircularProgress color={color} />
+            <CircularProgress size={30} color={color} />
           </div>
         )}
         {children}

@@ -28,11 +28,13 @@ interface Props {
 interface ButtonReservationProps {
   eventId: string;
   startDate: Date;
+  availableQuotas: number;
 }
 
 function ButtonReservation({
   eventId,
-  startDate
+  startDate,
+  availableQuotas
 }: ButtonReservationProps): React.JSX.Element {
   const user = useSelector(selectUser);
   const token = useSelector(selectToken);
@@ -40,10 +42,10 @@ function ButtonReservation({
   const { openAlert } = useAlertControl();
   const [loading, setLoading] = useState<boolean>(false);
 
-  // const redirectTo = async (): Promise<void> => {
-  //   await router.push('/bookings');
-  //   setLoading(false);
-  // };
+  const redirectTo = async (): Promise<void> => {
+    await router.push('/bookings');
+    setLoading(false);
+  };
 
   const makeReservation = async (): Promise<void> => {
     if (token === null) {
@@ -66,24 +68,30 @@ function ButtonReservation({
       return;
     }
     openAlert('success', ['Reserva realizada exitosamente']);
-    // setTimeout(() => {
-    //   void redirectTo();
-    // }, 800);
+    setTimeout(() => {
+      void redirectTo();
+    }, 800);
   };
 
   return (
     <Button
       variant="rounded"
       loading={loading}
-      disabled={isFinishEvent(startDate)}
+      disabled={isFinishEvent(startDate) || availableQuotas <= 0}
       onClick={() => {
         void makeReservation();
       }}
     >
-      {token !== null ? (
-        <>{isFinishEvent(startDate) ? 'Finalizado' : 'Reservar'}</>
+      {availableQuotas <= 0 ? (
+        'Sin cupos'
       ) : (
-        <>{'Registrate'}</>
+        <>
+          {isFinishEvent(startDate) ? (
+            'Finalizado'
+          ) : (
+            <>{token !== null ? <>{'Reservar'}</> : <>{'Registrate'}</>}</>
+          )}
+        </>
       )}
     </Button>
   );
@@ -138,6 +146,7 @@ export default function ModalEvent({
               <ButtonReservation
                 eventId={event.id}
                 startDate={event.start_date}
+                availableQuotas={event.available_quotas}
               />
             ) : (
               <>
