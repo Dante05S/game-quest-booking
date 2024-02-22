@@ -1,40 +1,116 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Arquitectura
 
-## Getting Started
+El proyecto "game-quest-booking" se basa en el framework Next.js junto con typescript, elegido estratégicamente para potenciar el SEO y acelerar la carga de la página, incluyendo la optimización de imágenes y fuentes para una experiencia de usuario óptima.
 
-First, run the development server:
+La mayoría de los componentes fueron desarrollados personalmente con Tailwind CSS, permitiendo un control preciso del diseño y funcionalidad. Esta elección se traduce en una adaptabilidad ágil a diversos casos y la capacidad de realizar mejoras con facilidad.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+El estado global del sitio se gestiona principalmente mediante Redux Toolkit, respaldando funciones críticas como la información de usuarios, autenticación, actualización en tiempo real de cupos con pusher y cambios de estado de reservas, especialmente en casos de cancelación. Además, se hace uso estratégico de Context en ciertas secciones del proyecto para una mayor flexibilidad.
+
+La comunicación efectiva con el backend se logra a través de una API REST mediante Fetch, considerando la baja compatibilidad de Next.js con Axios en el lado del servidor.
+
+En complemento, se ha implementado un pequeño backend dentro de la API de Next. Este backend gestiona las cookies para almacenar y verificar los tokens de autenticación, proporcionando una capa adicional de seguridad que protege las rutas mediante el middleware de Next.
+
+## Instalacion
+
+#### Paso 1
+
+Clonar el proyecto
+
+```
+$ git clone https://github.com/Dante05S/game-quest-booking.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Paso 2
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Normalmente las `.env` estan ocultas y no se suben al respositorio, pero en esta ocación las deje con acceso publico para facilitar la configuración del entorno
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+#### Paso 3
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Instalar dependencias
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+$ npm install
+```
 
-## Learn More
+#### Paso 4
 
-To learn more about Next.js, take a look at the following resources:
+Levantar el servidor
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+$ npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+#### Paso 5
 
-## Deploy on Vercel
+[Probar instalacion](http://localhost:3000)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<blockquote>
+<span>
+💡
+</span>
+<span>
+Si tienes algun problema al momento de realizar uno de estos pasos, no dudes en mencionarmelo.
+</span>
+</blockquote>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Pantallazos
+
+### GameQuestBookingCore
+
+<img width="1000" height="600" src="/public/1.png">
+<br/>
+
+### GameQuestBooking
+
+<img width="1000" height="600" src="/public/2.png">
+<br/>
+
+### HomePage
+
+<img width="1000" height="600" src="/public/3.png">
+<br/>
+
+### Visualización de eventos
+
+<img width="1000" height="600" src="/public/4.png">
+<br/>
+
+### Login
+
+<img width="1000" height="600" src="/public/5.png">
+<br/>
+
+### Verificación de correo
+
+<img width="1000" height="600" src="/public/6.png">
+<br/>
+
+### Codigo Correo
+
+<img width="1000" height="600" src="/public/8.png">
+<br/>
+
+### Registro
+
+<img width="1000" height="600" src="/public/7.png">
+<br/>
+
+### Reserva de lugares
+
+<img width="1000" height="600" src="/public/9.png">
+<br/>
+
+### Cancelar reservas
+
+<img width="1000" height="600" src="/public/10.png">
+<br/>
+<img width="1000" height="600" src="/public/11.png">
+<br/>
+
+### Comentarios y Calificaciones
+
+<img width="1000" height="600" src="/public/12.png">
+<br/>
+<img width="1000" height="600" src="/public/13.png">
+<br/>
+<img width="1000" height="600" src="/public/14.png">

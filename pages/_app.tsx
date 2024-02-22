@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import AuthService from '@/services/AuthService';
 import { responseIsOk } from '@/helpers/request';
 import { setToken, setUser } from '@/redux/slices/userSlice';
+import Doom from '@/components/Doom';
 
 const kanit = Kanit({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -51,6 +52,7 @@ export default function App({
   return (
     <Provider store={store}>
       <div className={clsx(kanit.className, 'h-full')}>
+        <Doom />
         <Component {...pageProps} />
       </div>
     </Provider>
