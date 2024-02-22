@@ -22,7 +22,6 @@ const useKonamiCode = (): UseKonamiCode => {
       function (e) {
         if (konami.includes(e.code)) {
           keys.push(e.code);
-          console.log(keys.toString());
           if (keys.length > 10) {
             keys = [];
           } else if (keys.toString().includes(konami)) {
